@@ -1,1 +1,64 @@
-Raviteja => joins => SailpointCompany => HR is POC (point of contact) => HR will feed the data of mine ( Raviteja's ) to ( excel , JDBC, Workday or SAP etc ) => if the company uses sailpoint or any other => it fetches the data of the users who joined newly  for every 5 to 6 hours based on cron job of the company created => sailpoint will create identity => based on the identity/role it will assingn access to respective user ( raviteja ) to intergrated apps like salesforce, SAP , GitHub etc
+Raviteja => joins => SailpointCompany => HR is POC (point of contact) => HR will feed the data of mine ( Raviteja's ) to ( excel , JDBC, Workday or SAP etc ) => if the company uses sailpoint or any other => it fetches the data of the users who joined newly  for every 5 to 6 hours based on cron job of the company created => sailpoint will create identity => based on the identity/role it will assingn access to respective user ( raviteja ) to intergrated apps like salesforce, SAP , GitHub etc.
+
+
+Application  ===>>>  Any target created or configured in sailpoint called application . it contains the configuration to connect the application , attributes and other details .
+
+Targeted Systems ===>>>  nothing but end system  AD , LDAP , ServiceNow .
+
+Authoritative Application ===>> These are Apps which are source of truth or HR  feed file is the source ( which means what ever file coming from feed , it will replicate same in sailpoint .
+
+NON- Authoritative Application ===>>>  These are the application manged by us , like Creating/updating/deleted access called non authoritative .
+
+Connector ===>>>  IS Java Program which internally work for application , each application has one connector which communicated from IIQ to target system using java or .net program ( AD ).
+
+IQService ===>>> IQ service is .net program to communicate from IIQ to AD .
+
+Identity ===>>> user in sailpoint called identity  , is created from Authoritative Application.
+
+Account ===>>> account is user in application called accounts , is created from Authoritative Application or non Authoritative Application.
+
+(( Raviteja ( identity ) having ( Github , AD , Servicenow , SAP accounts )  one identity have multiple accounts )
+
+Aggregation ===>>> fetching the data from target system 
+
+Account Aggregation  ====>>>> fetching users data from target system
+
+Account Group Aggregation =====>>>> fetching the groups/ entitles / roles / permission data from target system 
+
+Identity cube ===>>> Complete bundle which contains all identity attributes, entitlment, application account and assiicated events. It's XML representation of identity which conatins everyuthing realted to identity.
+
+Refresh identity Cube ===> refresh the identity attribute and treigger and operations like JML, birthright provisioning, RBAC, Policy.
+
+Provisioning ===> Creating/Updating/Deleting/Managing access from SailPoint to target system. Any changes from SAilPoint to traget system called provisioning.
+
+Account Provisioning ===>>> Any user's changes (creation/updation/deletion/changePassword) frm SailPoint to tragte called account provusioning.
+
+Group Provisioning ===>>> Any target system'Groups/Role/Permission changes from SailPoint to target system to group provisioning.
+
+Entitlmenet ===>>> Any target system's groups/role/Permission called Entitlment in SailPoint.
+
+Groups ===>>>  Bundle of identities defined based on specific static attributes - Location based groups.
+
+Population ===>>> Bundle of identities based on dynmicate attribute with one or many condition. 
+
+Workgroup ===>>> Bundle of identities based on capablities or access in SailPoint. It also used to for approvals and other places like owners. Workgroup can be use for assigning capabities in SailPoint.
+
+Workflow ====>>>  Workflow called Business Process in SailPoint UI. It's brain of SailPoint. Anything whihc submit will be gone though by workflow.
+
+Lifecycle Event ===>>>  Joiner/Mover/Levare, It's life cycle of identity in oragnization. Join/Move/Leave/Rehire
+
+Correlation ====>>>  When we aggregate users from non authoritaive applictaion to SailPoint, we wanted to link the accounts of non authoritaive application with authoritative application identity. It used to map the account of target system to SailPoint identity.
+
+Roles===>>>  Bundle of Entitlmeents in SailPoint from one or many application.
+Business Role
+IT role
+Entitlment Role
+
+Birthright Provisioning -
+Joiner
+RBAC - Role based acess control.
+Hydbrid - 30% Joiner - 70% RBAC
+
+Certifications - use to certify the identity in sailpoint, ensure user have min/required access to do their job. It's peridic review of access of identity. 
+
+
